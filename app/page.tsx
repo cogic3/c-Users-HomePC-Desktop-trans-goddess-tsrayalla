@@ -30,7 +30,7 @@ export default function Home() {
             Welcome to the world of
           </p>
           <h1
-            className="fade-up fade-up-delay-2 text-7xl md:text-9xl font-bold gradient-text mb-6 leading-none"
+            className="fade-up fade-up-delay-2 text-5xl md:text-9xl font-bold gradient-text mb-6 leading-none"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             TshungRayalla
