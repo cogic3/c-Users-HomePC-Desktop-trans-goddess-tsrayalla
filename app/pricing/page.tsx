@@ -104,7 +104,28 @@ export default function Pricing() {
   const [method, setMethod] = useState<"bitcoin" | "giftcard" | null>(null);
   const [copied, setCopied] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  async function handleGiftCardUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setFileName(file.name);
+    setUploading(true);
+
+    const formData = new FormData();
+    formData.append("UPLOADCARE_PUB_KEY", "49dcad9248214e3c0483");
+    formData.append("UPLOADCARE_STORE", "1");
+    formData.append("file", file);
+
+    await fetch("https://upload.uploadcare.com/base/", {
+      method: "POST",
+      body: formData,
+    });
+
+    setUploading(false);
+    setSubmitted(true);
+  }
 
   function copyBitcoin() {
     navigator.clipboard.writeText(BITCOIN_ADDRESS);
@@ -253,18 +274,12 @@ export default function Pricing() {
                     <p className="text-white/50 text-sm mb-6">Upload a photo of your gift card. Any type accepted — make sure the code is visible.</p>
                     <label className="block w-full border-2 border-dashed border-white/15 rounded-xl p-8 text-center cursor-pointer hover:border-[#F7A8B8]/40 transition-colors mb-6">
                       <input type="file" accept="image/*" className="hidden"
-                        onChange={(e) => setFileName(e.target.files?.[0]?.name || null)} />
+                        onChange={handleGiftCardUpload} />
                       <div className="text-3xl mb-2">🎁</div>
                       <p className="text-white/50 text-sm">{fileName ? fileName : "Click to upload gift card image"}</p>
                       <p className="text-white/25 text-xs mt-1">JPG, PNG supported</p>
                     </label>
-                    <button
-                      onClick={() => fileName && setSubmitted(true)}
-                      disabled={!fileName}
-                      className="w-full py-3 rounded-full text-sm font-semibold transition-all hover:scale-105 disabled:opacity-30 disabled:cursor-not-allowed"
-                      style={{ background: "linear-gradient(90deg, #55CDFC, #F7A8B8)", color: "black" }}>
-                      Submit Gift Card
-                    </button>
+                    {uploading && <p className="text-center text-white/40 text-sm mb-4">Uploading...</p>}
                   </div>
                 )}
               </>
