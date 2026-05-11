@@ -55,6 +55,16 @@ export default function BookNow() {
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#55CDFC] transition-colors" />
           </div>
           <div>
+            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">Phone Number</label>
+            <input required type="tel" name="phone" placeholder="+1 234 567 8900"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#55CDFC] transition-colors" />
+          </div>
+          <div>
+            <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">Location</label>
+            <input required type="text" name="location" placeholder="City, Country"
+              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-[#55CDFC] transition-colors" />
+          </div>
+          <div>
             <label className="text-white/50 text-xs uppercase tracking-widest block mb-2">Session Type</label>
             <select required name="session_type"
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#55CDFC] transition-colors">
