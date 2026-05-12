@@ -8,7 +8,7 @@ const products = [
   { id: 1, name: "Velvo", price: 200, image: "/toys/velvo.png", desc: "World First Patented Rolling Bead G-Spot and Clit Rabbit Vibrator" },
   { id: 2, name: "Gravity", price: 120, image: "/toys/gravity.png", desc: "Bluetooth Automatic Thrusting and Vibrating Dildo." },
   { id: 3, name: "Lapis", price: 150, image: "/toys/lapis.png", desc: "App-controlled Dual-ended Vibrating Strapless strap-on" },
-  { id: 4, name: "Sex Machine", price: 800, image: "/toys/sex machine.png", desc: "App-controlled Thrusting Sex Machine" },
+  { id: 4, name: "Sex Machine", price: 800, image: "/toys/sex-machine.png", desc: "App-controlled Thrusting Sex Machine" },
 ];
 
 export default function ToyStore() {
