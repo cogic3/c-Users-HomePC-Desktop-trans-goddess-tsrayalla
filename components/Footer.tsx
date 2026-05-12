@@ -28,6 +28,7 @@ export default function Footer() {
               { label: "Sissy Training", href: "/services/sissy-training" },
               { label: "In-Person Meetings", href: "/services/in-person" },
               { label: "Dungeon Play", href: "/services/dungeon-play" },
+              { label: "Toy Store", href: "/toystore" },
             ].map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="text-white/50 text-sm hover:text-white transition-colors">
