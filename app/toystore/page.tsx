@@ -96,8 +96,8 @@ export default function ToyStore() {
               onClick={(e) => { e.stopPropagation(); addToCart(product); }}
               className="w-full py-2.5 rounded-full text-xs font-semibold transition-all hover:scale-105"
               style={{
-                background: added === product.id ? "rgba(85,205,252,0.2)" : "linear-gradient(90deg, #55CDFC, #F7A8B8)",
-                color: added === product.id ? "#55CDFC" : "black",
+                background: "linear-gradient(90deg, #55CDFC, #F7A8B8)",
+                color: "black",
               }}
             >
               Add to Cart
