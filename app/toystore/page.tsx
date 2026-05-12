@@ -12,8 +12,8 @@ const products = [
 ];
 
 export default function ToyStore() {
+  const [qty, setQty] = useState(1);
   const [cart, setCart] = useState<number[]>([]);
-  const [added, setAdded] = useState<number | null>(null);
   const [selected, setSelected] = useState<typeof products[0] | null>(null);
   const [method, setMethod] = useState<"bitcoin" | "giftcard" | null>(null);
   const [copied, setCopied] = useState(false);
@@ -21,10 +21,9 @@ export default function ToyStore() {
   const [uploading, setUploading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  function addToCart(id: number) {
-    setCart([...cart, id]);
-    setAdded(id);
-    setTimeout(() => setAdded(null), 1500);
+  function addToCart(product: typeof products[0]) {
+    setCart([...cart, product.id]);
+    openModal(product);
   }
 
   function openModal(product: typeof products[0]) {
@@ -32,6 +31,7 @@ export default function ToyStore() {
     setMethod(null);
     setFileName(null);
     setSubmitted(false);
+    setQty(1);
   }
 
   function closeModal() {
@@ -39,6 +39,7 @@ export default function ToyStore() {
     setMethod(null);
     setFileName(null);
     setSubmitted(false);
+    setQty(1);
   }
 
   function copyBitcoin() {
@@ -92,14 +93,14 @@ export default function ToyStore() {
             <p className="text-white/40 text-xs leading-relaxed mb-4 flex-1">{product.desc}</p>
             <p className="text-[#55CDFC] font-bold text-lg mb-4">${product.price.toFixed(2)}</p>
             <button
-              onClick={(e) => { e.stopPropagation(); addToCart(product.id); }}
+              onClick={(e) => { e.stopPropagation(); addToCart(product); }}
               className="w-full py-2.5 rounded-full text-xs font-semibold transition-all hover:scale-105"
               style={{
                 background: added === product.id ? "rgba(85,205,252,0.2)" : "linear-gradient(90deg, #55CDFC, #F7A8B8)",
                 color: added === product.id ? "#55CDFC" : "black",
               }}
             >
-              {added === product.id ? "Added ✓" : "Add to Cart"}
+              Add to Cart
             </button>
           </div>
         ))}
@@ -115,7 +116,16 @@ export default function ToyStore() {
               <>
                 <h2 className="text-xl font-bold text-white mb-1" style={{ fontFamily: "var(--font-playfair)" }}>{selected.name}</h2>
                 <p className="text-[#55CDFC] font-bold text-lg mb-1">${selected.price.toFixed(2)}</p>
-                <p className="text-white/40 text-sm mb-8">Choose your payment method</p>
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-white/40 text-sm">Quantity:</span>
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => setQty(q => Math.max(1, q - 1))} className="w-7 h-7 rounded-full flex items-center justify-center text-white transition-all" style={{ background: "rgba(255,255,255,0.08)" }}>−</button>
+                    <span className="text-white font-semibold w-6 text-center">{qty}</span>
+                    <button onClick={() => setQty(q => q + 1)} className="w-7 h-7 rounded-full flex items-center justify-center text-white transition-all" style={{ background: "rgba(255,255,255,0.08)" }}>+</button>
+                  </div>
+                  <span className="text-white/40 text-sm ml-auto">Total: <span className="text-[#55CDFC] font-bold">${(selected.price * qty).toFixed(2)}</span></span>
+                </div>
+                <p className="text-white/40 text-sm mb-4">Choose your payment method</p>
 
                 {!method && (
                   <div className="flex flex-col gap-3">
