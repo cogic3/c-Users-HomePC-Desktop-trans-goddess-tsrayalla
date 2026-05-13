@@ -9,6 +9,11 @@ const products = [
   { id: 2, name: "Gravity", price: 120, image: "/toys/gravity.png", desc: "Bluetooth Automatic Thrusting and Vibrating Dildo." },
   { id: 3, name: "Lapis", price: 150, image: "/toys/lapis.png", desc: "App-controlled Dual-ended Vibrating Strapless strap-on" },
   { id: 4, name: "Sex Machine", price: 800, image: "/toys/sex-machine.png", desc: "App-controlled Thrusting Sex Machine" },
+  { id: 5, name: "Sissy Costume 1", price: 75, image: "/toys/1.webp", desc: "" },
+  { id: 6, name: "Long Sissy Costume", price: 125, image: "/toys/2.webp", desc: "" },
+  { id: 7, name: "Sissy Costume 2", price: 75, image: "/toys/3.webp", desc: "" },
+  { id: 8, name: "Sissy Maid Costume", price: 90, image: "/toys/4.webp", desc: "" },
+  { id: 9, name: "Loyalty Costume", price: 165, image: "/toys/5.webp", desc: "" },
 ];
 
 export default function ToyStore() {
